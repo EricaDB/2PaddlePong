@@ -15,13 +15,13 @@ var Ball = function(i) {
 	this.animations = new createjs.Sprite(new createjs.SpriteSheet({
 	    "images": ["./ball.png"],
 	    "frames": {
-		    "width": 16, //32 gets 2 balls
+		    "width": 16, //32 gets
 		    "height": 16,
 		    "count": 4
 	    },
 	    "animations": {
 		    "ball": {
-			    "frames": [0, 1, 2, 3, 0, 0, 0], //could reverse order to rotate other way
+			    "frames": [0, 1, 2, 3, 0, 0, 0],
 			    "speed": 0.25
 		    }
 	    }
@@ -73,7 +73,7 @@ var Paddle = function() {
     }), "paddle");
 
 	this.animations.x = 16;
-	this.animations.y = 32;
+	this.animations.y = 48;
 	this.downwardmovement = false;
     this.upwardmovement = false;
 
@@ -89,7 +89,7 @@ var Paddle = function() {
 }
 
 var balls = [];
-for (var i = 0; i < 2; i++) {
+for (var i = 0; i < 1; i++) {
 	balls[i] = new Ball(i);
 }
 var paddle = new Paddle();
@@ -100,14 +100,7 @@ var frameTick = function() {
 		balls[i].checkCollisions();
 		balls[i].updatePosition();
 	}
-    // ball.checkCollisions();
-    // ball.updatePosition();
     paddle.updatePosition();
-
-    /*if (checkCollision(paddleAnimation, this.animations)) {
-	    this.xdirection *= -1;
-    }*/
-
 	gamestage.update();
 };
 
