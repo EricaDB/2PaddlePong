@@ -35,10 +35,9 @@ var Ball = function(i) {
 	gamestage.addChild(this.animations);
 
     this.checkCollisions = function() {
-	    if (this.animations.x < 0) {
+	    if (this.animations.x < 0 ||
+	    	this.animations.x + this.animations.spriteSheet._frameWidth > gamestage.canvas.width) {
 		    location.reload();
-	    } else if (this.animations.x + this.animations.spriteSheet._frameWidth > gamestage.canvas.width) {
-		    this.xdirection *= -1;
 	    }
 
 	    if (this.animations.y < 0 ||
