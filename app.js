@@ -49,6 +49,10 @@ var Ball = function(i) {
 	    if (checkCollision(paddle.animations, this.animations)) {
 	    	this.xdirection *= -1;
 	    }
+
+	    if (checkCollision(paddleTwo.animations, this.animations)) {
+	    	this.xdirection *= -1;
+	    }
     };
 
     this.updatePosition = function() {
@@ -152,11 +156,10 @@ document.onkeyup = function(event) {
 };
 
 document.onmousemove = function(event) {
-    console.log(paddleTwo.animations.y);
-    if (event.pageY > paddleTwo.animations.y) {
+    if (event.pageY - 100 > paddleTwo.animations.y) {
         paddleTwo.downwardmovement = true;
         paddleTwo.upwardmovement = false;
-    } else if (event.clientY < paddleTwo.animations.y) {
+    } else if (event.pageY - 100 < paddleTwo.animations.y) {
         paddleTwo.upwardmovement = true;
         paddleTwo.downwardmovement = false;
     }
