@@ -108,6 +108,15 @@ var PaddleTwo = function() {
     this.upwardmovement = false;
     gamestage.addChild(this.animations);
 	this.updatePosition = function() {
+        if (this.downwardmovement && 
+           gamestage.canvas.height < this.animations.y + 
+           this.animations.spriteSheet._frameHeight) {
+            this.downwardmovement = false;
+        }
+        if (this.upwardmovement && 
+           0 > this.animations.y) { 
+            this.upwardmovement = false;
+        }
 		if (this.downwardmovement) {
 		    this.animations.y++;
 	    } else if (this.upwardmovement) {
@@ -135,7 +144,6 @@ var frameTick = function() {
 	gamestage.update();
 };
 
-
 document.onkeydown = function(event) {
 	if (event.keyCode === 40) {
 		paddle.downwardmovement = true;
@@ -155,7 +163,8 @@ document.onkeyup = function(event) {
 };
 
 document.onmousemove = function(event) {
-    if (event.pageY - 100 > paddleTwo.animations.y) {
+    if (event.pageY - 100 > paddleTwo.animations.y &&
+        gamestage.canvas.height > paddleTwo.animations.y + paddleTwo.animations.spriteSheet._frameHeight) {
         paddleTwo.downwardmovement = true;
         paddleTwo.upwardmovement = false;
     } else if (event.pageY - 100 < paddleTwo.animations.y) {
