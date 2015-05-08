@@ -80,9 +80,10 @@ var Paddle = function() {
     this.upwardmovement = false;
     gamestage.addChild(this.animations);
 	this.updatePosition = function() {
-		if (this.downwardmovement) {
+		if (this.downwardmovement && 
+			this.animations.y + this.animations.spriteSheet._frameHeight < gamestage.canvas.height) {
 		    this.animations.y++;
-	    } else if (this.upwardmovement) {
+	    } else if (this.upwardmovement && this.animations.y > 0) {
 		    this.animations.y--;
 	    }
 	};
